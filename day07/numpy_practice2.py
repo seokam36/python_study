@@ -54,5 +54,5 @@ print(np.sum(danger_fil))
 a = (sales - np.min(sales)) / (np.max(sales) - np.min(sales))
 b = (a >= 0.9)
 vvip = data[b,:]
-vvip_sort = np.argsort(-vvip[:, 4])
+vvip_sort = np.argsort(vvip[:, 4][::-1])
 print(vvip_sort[:5])
