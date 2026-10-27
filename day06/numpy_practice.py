@@ -21,15 +21,16 @@ print(zeros_arr.shape, zeros_arr.size)
 # 2. 실수형 배열 arr_float = np.array([1.7, 2.4, 3.9], dtype=np.float32)을 np.int32 타입으로 형변환하여 소수점이 절삭된 새 배열을 출력하시오.
 bytes_arr = np.array(['python','numpy'], dtype=np.bytes_)
 print(bytes_arr.dtype)
-arr_float = np.array([1.7, 2.4, 3.9], dtype=np.int32)
-print(arr_float)
+arr_float = np.array([1.7, 2.4, 3.9], dtype=np.float32)
+y = arr_float.astype(np.int32)
+print(y)
 
 # [문제 4]
 # 2차원 배열 arr = np.array([[10, 20, 30], [40, 50, 60], [70, 80, 90]])에 대해:
 # 1. 1행 2열의 값과 음수 인덱스만을 사용한 마지막 행 마지막 열의 값을 각각 추출하시오.
 # 2. 배열 내에서 50을 초과하는 요소들만 불리언 인덱싱으로 추출하여 1차원 배열로 출력하시오.
 arr = np.array([[10, 20, 30], [40, 50, 60], [70, 80, 90]])
-print(arr[1,2], arr[-1,:])
+print(arr[1,2], arr[-1,-1])
 print(arr[arr>50])
 
 # [문제 5]
@@ -44,7 +45,7 @@ print(arr[0:3:2, :])
 # 배열 x = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])에서
 # 상단 1개 행과 우측 3개 열이 교차하는 서브 배열 을 2차원 슬라이싱 문법([행_슬라이싱, 열_슬라이싱])으로 추출하시오.
 x = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-print(x[0,:])
+print(x[0:1,:])
 
 # [문제 7]
 # 배열 x = np.array([10, 20, 30, 40, 50])에 대해:
@@ -61,16 +62,16 @@ print(x)
 a = np.array([1, 2, 3])
 b = np.array([4, 5, 6])
 print(a * b)
-print(a * 2)
-print(a + 2, np.sqrt(a))
+print(a ** 2)
+print(a + 5, np.sqrt(a))
 
 # [문제 9]
 # 배열 x = np.arange(1, 11) (1부터 10까지의 정수 배열)에서:
 # 1. 비트 연산자 '&'를 사용하여 '3 초과이면서 8 미만'인 요소만 추출하시오.
 # 2. 비트 연산자 '|'를 사용하여 '2 이하이거나 9 이상'인 요소만 추출하시오.
 x = np.arange(1, 11)
-print((x>3) & (x<8))
-print((x<=2) | (x>=9))
+print(x[(x>3) & (x<8)])
+print(x[(x<=2) | (x>=9)])
 
 # [문제 10]
 # 두 배열 x = np.array([10, 20, 30]), y = np.array([15, 20, 25])에 대해:
@@ -78,3 +79,5 @@ print((x<=2) | (x>=9))
 # 2. 조건 (x < 20) | (x == 30)을 만족하는 x의 요소들만 불리언 인덱싱으로 추출하시오.
 x = np.array([10, 20, 30])
 y = np.array([15, 20, 25])
+print(x>=y)
+print(x[(x<20) | (x==30)])
