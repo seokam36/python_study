@@ -1,4 +1,4 @@
-# 예제2] 동적페이지 크롤링 (페이징처리)
+# 예제2] 정적페이지 크롤링 (페이징처리)
 # 예스24 베스트셀러 도서 정보 크롤링 / 페이징처리(반복문)
 # 1) 크롤링할 주소 가져온다, 정리/분석, categoryNumber=001국내도서002외국도서, pageNumber 페이지번호
 # https://www.yes24.com/product/category/daybestseller?categoryNumber=001&pageNumber=1&pageSize=24&type=day
