@@ -1,0 +1,63 @@
+# 사이킷런 -> 방대한 머신러닝 알고리즘 모델 제공 라이브러리
+# pip install scikit-learn
+
+# 머신러닝 목표 : 추론/예측 과정
+# 특성 : 모델이 학습하는 자료 정보 , 타깃 : 모델이 맞혀야 하는 정답 정보
+
+# 지도학습 : 특성과 타킷을 모두 제공하여 학습 (회귀/분류),
+# 비지도학습 : 타깃 없이 특성만으로 제공하는 학습 (군집/텍스트마이닝)
+
+# 회귀모델
+# 1] 단순 선형 회귀
+# https://www.kaggle.com/datasets/vipullrathod/fish-market
+# 1) 판다스로 자료 불러오기
+import pandas as pd
+
+df = pd.read_csv('Fish.csv')
+df.info()
+
+# 2) 모델 학습에 사용할 데이터 추출
+feature = ['Length2']     # 특성 : Length2 (물고기의 대각선 cm)
+target = 'Weight'           # 타깃 : Weight (물고기 무게 g)
+
+# 3) 독립변수/입력변수/특성/X , 종속변수/목표변수/타깃/Y
+X = df[feature] # 2차원
+Y = df[target]  # 1차원
+
+# 4) 데이터 분리, 학습용/테스트용 , 학습과 평가
+from sklearn.model_selection import train_test_split
+# train_test_split(X, Y, test_size=비율 , random_state=난수시드값)
+# 특성학습자료, 특성테스트자료, 타깃학습자료, 타깃테스트자료
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
+
+# 훈련세트 : 모델에서 규칙을 찾는 자료
+# 테스트세트 : 모델 학습 후 모델 평가/예측성능 점수/지표
+
+# 5) 단순(특성값 1개) 선형회귀 모델
+from sklearn.linear_model import LinearRegression
+model = LinearRegression() # 객체생성
+
+# 6) 모델 학습, model.fit(특성자료, 타깃자료)
+model.fit(X_train, Y_train)
+
+# 7) 모델 가중치 (기울기) 확인, model.coef_ -> [30.43452394]
+print(model.coef_)
+
+# 8) 모델 편향 (y절편) 확인 -> -477.30634978973194
+print(model.intercept_)
+
+# 9) 학습한 모델의 예측 , 새로운 x값을 넣어서 y값 구하기
+# 학습할 때 열 이름('Length2')이 있는 DataFrame을 썼으므로, 예측할 때도 같은 열 이름으로 넣어야 경고가 안 남
+print(model.predict( pd.DataFrame([[30]], columns=feature) )) # 만약에 물고기 길이가 30일때 무게 예측
+# *) 단순회귀모델 : y=ax+b , [30.43452394]*[30]+[-477.30634978973194]
+
+# 10) 시각화
+import matplotlib.pyplot as plt
+plt.scatter(X_train, Y_train)   # 학습자료 점
+plt.scatter([30], model.predict([[30]]), color='red') # 임의의 예측 점
+plt.plot([0,100], model.predict([[0],[100]])) # 회귀선 : 임의의 최솟값/최댓값
+plt.show()
+
+# 11) 문제점
+# x, y가 직선 관계이며 실 자료들은 비례 증가가 아닐수 있다
+# 해결 : 다항 회귀로 확작하여 특성 추가한다
