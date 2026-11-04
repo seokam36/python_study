@@ -61,3 +61,17 @@ plt.show()
 # 11) 문제점
 # x, y가 직선 관계이며 실 자료들은 비례 증가가 아닐수 있다
 # 해결 : 다항 회귀로 확작하여 특성 추가한다
+
+# 12) 모델 평가 , 테스트용자료사용
+Y_pred = model.predict(X_test)
+# - 평균 제곱근 오차계산
+import numpy as np # sqrt(제곱근) 넘파이 함수 사용
+from sklearn.metrics import mean_squared_error # 평균 오차(정답지와 예측)
+rmse = np.sqrt(mean_squared_error(Y_test, Y_pred))
+print('rmse: ', rmse)
+# 해석 : 모델이 실제 무게와 얼마나 틀렸는지 평균 오차
+
+# - 결정계수(R SCORE) : 타깃 데이터의 전체 변동성 대비 모델이 얼마나 잘 설명하는지 0~1 비율
+from sklearn.metrics import r2_score # 결정계수
+r2 = r2_score(Y_test, Y_pred) # 정답지와 예측값
+print('r2: ', r2) # 0.8199897860284712 , 82%
