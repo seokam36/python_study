@@ -29,5 +29,13 @@ class ItemService:
         # items.keys() : 딕셔너리.keys() -> [속성명, 속성명]
         self.df.loc[idx , item.keys()] = item.values()
         return True
+
+    def delete(self, id):
+        if id not in self.df['id'].values:
+            return False
+        # 존재하면 해당 id의 행 제외
+        self.df = self.df[self.df['id'] != id]
+        return True
+
 # 서비스 객체 생성
 item_service = ItemService()

@@ -69,6 +69,7 @@ grid = GridSearchCV(pipe, param_grid, cv=cv, scoring='f1_macro')
 grid.fit(X_train,Y_train)
 print(grid.best_params_)
 print(grid.best_score_)
+print(grid.best_score_)
 best_model = grid.best_estimator_
 Y_pred = best_model.predict(X_test)
 print(classification_report(Y_test,Y_pred))

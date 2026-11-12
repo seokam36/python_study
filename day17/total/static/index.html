@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>의료비 예측</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<main class="container">
+<h1>연간 의료비 예측</h1>
+<p class="sub">정보를 입력하면 1년 예상 의료비를 알려드려요.</p>
+
+<form id="form" class="card">
+<div class="row">
+<label
+>나이
+<input
+type="number"
+id="age"
+min="18"
+max="64"
+value="30"
+required
+/>
+</label>
+<label
+>성별
+<select id="sex">
+<option value="male">남성</option>
+<option value="female">여성</option>
+</select>
+</label>
+</div>
+
+<div class="row">
+<label
+>키 (cm)
+<input
+type="number"
+id="height"
+min="120"
+max="220"
+value="170"
+required
+/>
+</label>
+<label
+>몸무게 (kg)
+<input
+type="number"
+id="weight"
+min="30"
+max="200"
+value="65"
+required
+/>
+</label>
+</div>
+<p class="hint">BMI : <span id="bmi">22.5</span></p>
+
+<div class="row">
+<label
+>자녀 수
+<input
+type="number"
+id="children"
+min="0"
+max="5"
+value="0"
+required
+/>
+</label>
+<label
+>흡연 여부
+<select id="smoker">
+<option value="no">비흡연</option>
+<option value="yes">흡연</option>
+</select>
+</label>
+</div>
+
+<label
+>거주 지역 (미국)
+<select id="region">
+<option value="northeast">북동부</option>
+<option value="northwest">북서부</option>
+<option value="southeast">남동부</option>
+<option value="southwest">남서부</option>
+</select>
+</label>
+
+<button type="submit">예측하기</button>
+</form>
+
+<section id="result" class="card result hidden">
+<p class="label">예상 연간 의료비</p>
+<p class="charge" id="charge">-</p>
+<p class="monthly" id="monthly">-</p>
+<p class="metric" id="metric"></p>
+</section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/axios@1.7.9/dist/axios.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
