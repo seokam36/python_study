@@ -38,6 +38,7 @@ X_test_scaled = ss.transform(X_test)
 model = LogisticRegression()
 model.fit(X_train_scaled, Y_train)
 Y_pred = model.predict(X_test_scaled)
+
 # [단계 5] 모델 평가 및 분류 정확도(Accuracy) 확인
 # 테스트 세트에 대한 예측을 수행하고 정확도(accuracy_score)를 출력하세요.
 acc = accuracy_score(Y_test, Y_pred)
