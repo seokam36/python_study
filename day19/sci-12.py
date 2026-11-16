@@ -18,7 +18,7 @@ for col in cat_cols:
 X = df[num_cols + cat_cols]
 Y = df['price']
 from sklearn.model_selection import train_test_split
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state=42, test_size=0.2)
 
 # 1) 튜닝 -> optuna
 # 1. optuna 설치 : $env:PYYAML_FORCE_LIBYAML = "0" , pip install optuna shap
