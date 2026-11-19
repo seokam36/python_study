@@ -76,3 +76,4 @@ for lbl in list(label_map.values()):
     plt.scatter(sub['PC1'], sub['PC2'], marker='o')
 plt.legend()
 plt.show()
+print(X)
